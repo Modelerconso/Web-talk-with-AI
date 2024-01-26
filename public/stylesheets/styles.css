@@ -1,0 +1,154 @@
+/* All register page */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/Roboto/Roboto-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'roboto';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+}
+
+.contrain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1024px;
+    height: 800px;
+}
+
+/* Box Chat Bot */
+.chatbot {
+    height: 90%;
+    width: 85%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* header */
+.header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #4dbeff;
+    color: white;
+    font-weight: bold;
+    height: 10%;
+}
+
+.header .text{
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    padding-top: 7px;
+}
+
+/* content */
+.content {
+    height: 75%;
+    width: 100%;
+    overflow: auto;
+}
+
+/* box message ia */
+.message-ai, .message-user{
+    display: flex;
+    margin: 15px 15px 15px 15px;
+    mix-blend-mode: multiply;
+}
+
+.message-ai {
+    float: left;
+}
+
+.message-user {
+    float: right;
+}
+/* image */
+.box-img {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-ai img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* bubble */
+.message-ai .bubble {
+    background-color: rgb(164, 164, 164);
+    border-radius: 10px 10px 10px 0px;
+    padding: 15px 15px 15px 15px;
+}
+
+.message-user .bubble {
+    background-color: #5fc4ff;
+    border-radius: 10px 10px 0px 10px;
+    padding: 15px 15px 15px 15px;
+}
+
+/* name and time */
+.bubble .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px 5px 0px;
+}
+
+.info .name {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.info .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bubble .text {
+    font-size: 18px;
+}
+
+/* bottom */
+.input-message {
+    height: 15%;
+}
+
+.microphone {
+    display: flex;
+    mix-blend-mode: multiply;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.microphone img {
+    width: 60px;
+    height: 60px;
+}
+
+/* tablet */
+
+
+/* moblie */
+
+
