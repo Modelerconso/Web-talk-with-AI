@@ -21,6 +21,8 @@ const speechToText = () => {
             speechToText();
         };
 
+        
+
         recognition.onerror = (event) => {
             if (event.error === "no-speech") {
                 alert("No speech was detected. Stopping...");
@@ -34,7 +36,6 @@ const speechToText = () => {
             }
         };
     } catch (error) {
-        recording = false;
         console.log(error);
     }
 }
@@ -95,14 +96,20 @@ const scrollDownToAuto = () => {
 
 // textToSpeech.
 const textToSpeech = (text) => {
-    let speech = new SpeechSynthesisUtterance();
-    speech.text = text;
+    let speech = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(speech);
 }
 
 // Microphone.
 let imageDOM = document.getElementById("microphone-image");
 let historys = []
+
+// Keyboard
+document.addEventListener('keyup', function (event) {
+    if (event.key == " " ){
+        eventListener();
+    }
+})
 
 // Recording ...
 const eventListener = async () => {
@@ -146,9 +153,15 @@ const eventListener = async () => {
                     "role": "model",
                     "parts": messageAI
                 });
+
+                // Stop recording when output text.
+                stopRecording();
+
             } catch(error){
+                // When It have error stop.
+                stopRecording();
                 console.log(error)
-            } 
+            }
         }else{
             // Stop microphone.
             stopRecording();

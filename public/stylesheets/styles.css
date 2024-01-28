@@ -173,9 +173,20 @@ body {
     mix-blend-mode: multiply;
 }
 
-/* tablet */
+/* tablet and moblie*/
+@media only screen and (max-width: 820px) {
+    .contrain {
+        width: 100vw; 
+        height: 100vh; 
+        margin: 0; 
+        padding: 0; 
+        overflow: hidden; 
+    }
 
-
-/* moblie */
+    .chatbot {
+        height: 100%;
+        width: 100%;
+    }
+}
 
 
