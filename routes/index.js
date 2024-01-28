@@ -1,10 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 const app = express()
+const { conversationHistory } = require("./gemini")
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cors())
 
 app.use(express.static("../public"))
@@ -15,10 +15,11 @@ app.get('/', (req, res) => {
 })
 
 // Send text to bard ..
-app.post('/message/user', (req, res) => {
-    const text = req.body.message
-    res.send({
-        message: "success"
+app.post('/message/user', async (req, res) => {
+    const text = await conversationHistory(req.body.message,req.body.historys)
+    res.json({
+        role: "AI",
+        message: text
     })
 })
 
