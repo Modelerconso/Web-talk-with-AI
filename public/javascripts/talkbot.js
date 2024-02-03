@@ -17,23 +17,15 @@ const speechToText = () => {
             }
         };
 
-        recognition.onspeechend = () => {
-            speechToText();
-        };
-
-        
+        // recognition.onspeechend = () => {
+        //     speechToText();
+        // };
 
         recognition.onerror = (event) => {
             if (event.error === "no-speech") {
                 alert("No speech was detected. Stopping...");
                 stopRecording();
             } 
-            else if (event.error === "audio-capture") {
-                alert(
-                    "No microphone was found. Ensure that a microphone is installed."
-                );
-                stopRecording();
-            }
         };
     } catch (error) {
         console.log(error);
@@ -116,8 +108,9 @@ const eventListener = async () => {
     if (imageDOM.alt === 'microphone-green') {
         startRecording();
     } else {
+
         // collect data recording.
-        const messsageVoic = result.innerHTML;
+        const messsageVoic = await result.innerHTML;
         const dataRecord = {
             role: "user",
             message: messsageVoic,
@@ -125,26 +118,27 @@ const eventListener = async () => {
         };
 
         // Check message input isn't emptry.
-        if(dataRecord.message !== ""){
+        if(dataRecord.message != ""){
             // change style(microphones).
             messageUser(dataRecord.message);
             scrollDownToAuto();
+
+            // Stop record microphone.
             stopRecording();
 
             // api send data to chat bot 
             let messageAI = "";
             try{
+
                 const response = await axios.post(
                     'http://localhost:8000/message/user',
                     dataRecord
                 );
                 messageAI = response.data.message;
-                
                 // Scroll down and respose message AI.
                 messageAi(messageAI);
                 scrollDownToAuto();
                 textToSpeech(messageAI);
-
                 historys.push({
                     "role": "user",
                     "parts": messsageVoic
@@ -153,17 +147,13 @@ const eventListener = async () => {
                     "role": "model",
                     "parts": messageAI
                 });
-
-                // Stop recording when output text.
-                stopRecording();
-
             } catch(error){
                 // When It have error stop.
                 stopRecording();
                 console.log(error)
             }
-        }else{
-            // Stop microphone.
+        } else{
+            // Stop record microphone.
             stopRecording();
         }
     }

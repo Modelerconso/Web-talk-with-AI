@@ -1,5 +1,8 @@
 const fs = require('fs');
+require("dotenv").config()
+
 let prompt = ''
+
 fs.readFile("promptTeacher.txt", 'utf8', (err, data) => {
     if (err) {
         console.error('Error reading file:', err);
@@ -14,7 +17,7 @@ const conversationHistory = async (msg,historys) => {
     const { GoogleGenerativeAI } = await require("@google/generative-ai");
 
     // Access your API key as an environment variable (see "Set up your API key" above)
-    const genAI = new GoogleGenerativeAI("AIzaSyCcO88KEuw7dg-EwXagFTkMNu2igibxndU");
+    const genAI = new GoogleGenerativeAI(process.env.GEMENI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     
     // history 

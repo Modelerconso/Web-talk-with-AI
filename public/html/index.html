@@ -4,23 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listen TM</title>
-    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/chatbox.css">
 </head>
 <body>
     <div class="contrain">
-        <div class="chatbot">
+        <div class="all-content">
+            <!-- Header -->
             <div class="header">
-                <div class="text">
-                    Listen to me
+                <p>Listen to Me</p>
+            </div>
+            <!-- Chat box -->
+            <div class="chatbot">
+                <div class="content" id="response"></div>
+                <div class="input-message">
+                    <div class="result" style="display: none;"></div>
+                    <div class="microphone">
+                        <button id="recordAudio" onclick="eventListener()">
+                            <img id="microphone-image" src="../images/Microphone-green.png" alt="microphone-green">
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="content" id="response"></div>
-            <div class="input-message">
-                <div class="result" style="display: none;"></div>
-                <div class="microphone">
-                    <button id="recordAudio" onclick="eventListener()">
-                        <img id="microphone-image" src="../images/Microphone-green.png" alt="microphone-green">
-                    </button>
+            <!-- Menu -->
+            <div class="menu">
+                <div class="content-menu">
+                    <div class="stats">
+                        <a href="stats.html"><img src="../images/Stat.png" alt="stats"></a>
+                    </div>
+                    <div class="chat">
+                        <a href="index.html"><img src="../images/Chat.png" alt="chat"></a>
+                    </div>
+                    <div class="profile">
+                        <a href="profile.html"><img src="../images/User.png" alt="user"></a>
+                    </div>
                 </div>
             </div>
         </div>
