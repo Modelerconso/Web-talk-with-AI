@@ -73,7 +73,7 @@ a:active {
 #login-form-wrap {
     background-color: #fff;
     width: 55%;
-    height: 65%;
+    height: 85%;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
@@ -86,14 +86,12 @@ a:active {
     height: 20%;
     font-size: 40px;
     font-weight: bold;
-    margin-top: 10px;
 }
 
 .box-form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
     height: 65%;
 }
 
@@ -105,7 +103,7 @@ a:active {
     margin-bottom: 20px;
 }
 
-input {
+input,button {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -116,7 +114,7 @@ input {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="password"] {
     width: 100%;
     padding: 0 10px 0 10px;
     margin: 0;
@@ -137,6 +135,24 @@ input[type="submit"] {
     display: block;
     background-color: #3ca9e2;
     color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.loginGmail {
+    border: none;
+    display: block;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    color: #000000;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
@@ -179,10 +195,9 @@ border-radius: 0 0 4px 4px;
         height: 100%; 
     }
 
-    /* login */
     #login-form-wrap {
-        width: 80%;
-        height: 70%;
+        width: 55%;
+        height: 75%;
     }
 
     .box-form {
@@ -194,5 +209,14 @@ border-radius: 0 0 4px 4px;
 
     .login-form p{
         margin-bottom: 25px;
+    }
+}
+
+/* tablet and moblie*/
+@media only screen and (max-width: 430px) {
+    /* login */
+    #login-form-wrap {
+        width: 80%;
+        height: 95%;
     }
 }

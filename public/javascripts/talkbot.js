@@ -2,7 +2,7 @@ let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition,
   recognition;
 
-const result = document.querySelector(".result");
+let  result = document.querySelector(".result");
 
 const speechToText = () => {
     try{
@@ -17,9 +17,9 @@ const speechToText = () => {
             }
         };
 
-        // recognition.onspeechend = () => {
-        //     speechToText();
-        // };
+        recognition.onspeechend = () => {
+            speechToText();
+        };
 
         recognition.onerror = (event) => {
             if (event.error === "no-speech") {
@@ -108,9 +108,8 @@ const eventListener = async () => {
     if (imageDOM.alt === 'microphone-green') {
         startRecording();
     } else {
-
         // collect data recording.
-        const messsageVoic = await result.innerHTML;
+        const messsageVoic = result.innerHTML;
         const dataRecord = {
             role: "user",
             message: messsageVoic,
@@ -126,15 +125,12 @@ const eventListener = async () => {
             // Stop record microphone.
             stopRecording();
 
-            // api send data to chat bot 
-            let messageAI = "";
             try{
-
                 const response = await axios.post(
                     'http://localhost:8000/message/user',
                     dataRecord
                 );
-                messageAI = response.data.message;
+                let messageAI = response.data.message;
                 // Scroll down and respose message AI.
                 messageAi(messageAI);
                 scrollDownToAuto();
@@ -160,14 +156,14 @@ const eventListener = async () => {
 }
 
 function startRecording() {
+    speechToText();
     imageDOM.src = '../images/Microphone-red.png';
     imageDOM.alt = 'microphone-red';
-    speechToText();
 }
 
 function stopRecording() {
+    recognition.stop();
     imageDOM.src = '../images/Microphone-green.png';
     imageDOM.alt = 'microphone-green';
-    recognition.stop();
     result.innerHTML = ""
 }
