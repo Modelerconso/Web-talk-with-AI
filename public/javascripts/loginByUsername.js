@@ -15,10 +15,10 @@ const loginByUsername = async () => {
             'http://localhost:8000/user/login',
             dataLogin
         )
+        
         localStorage.setItem('tokenUsername',response.data.token);
-        
         // Next to conversation page.
-        
+        window.location.href = '../html/index.html'
 
     } catch(error){
         console.log(error)

@@ -5,17 +5,20 @@ const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
 const app = express()
 
-const { doc, addDoc, collection, getDocs, setDoc } = require('firebase/firestore');
-const { db, auth, firebaseConfig } = require('./firebase');
-
+// firebase
+const { addDoc, collection, getDocs } = require('firebase/firestore');
+const { db, firebaseConfig } = require('./firebase');
+// AI model
 const { conversationHistory } = require('./gemini');
-const { error } = require('console');
-
+// Get data user
+const { getDataUserFromToken } = require('./getdatauser.js')
+// for JWT
 const secret = "mysecret"
 
 app.use(express.json())
 app.use(cors())
 
+// public files.
 app.use(express.static('../public'))
 
 // Start page ..
@@ -57,9 +60,35 @@ app.post('/message/user', async (req, res) => {
     })
 })
 
-// Get data api
+// Get data api.
 app.get('/get/apikey', async (req,res) => {
     res.json(firebaseConfig);
+})
+
+// Get data user.
+app.post('/get/userdata', async (req,res) => {
+    // convert token to username.
+    const data = getDataUserFromToken(req.body.token);
+    
+    // username to find user.
+    let userSnapshot = await getDocs(collection(db, 'user'));
+    let users = userSnapshot.docs.map(doc => doc.data());
+
+    // check user and password.
+    let user = users.find(user => user.username === data.username);
+
+    // if find it.
+    if((user != "")){
+        res.json({
+            message: "find success",
+            user
+        })
+    }else{
+        res.json({
+            message: "find unsuccess"
+        })
+    }
+    
 })
 
 // Login user.
@@ -111,10 +140,20 @@ app.post('/user/login', async (req,res) => {
 // Register user.
 app.post('/user/register', async (req, res) => {
     try{
-        // Check username and email is not duplicate.
+        // collect data username and email.
+        let username = req.body.username;
+        let email = req.body.email;
 
+        // get user data in firebase.
+        let userSnapshot = await getDocs(collection(db, 'user'));
+        let users = userSnapshot.docs.map(doc => doc.data());
         
-
+        // check user.
+        let checkUsername = users.find(user => user.username === username);
+        
+        // check email.
+        let checkEmail = users.find(user => user.email === email);
+        
         // bcrypt password
         const passwordBcrypt = await bcrypt.hash(req.body.password, 10);
         

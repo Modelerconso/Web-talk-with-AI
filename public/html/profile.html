@@ -23,24 +23,24 @@
                 <div class="body-content">
                     <div class="body-box-content">
                         <div class="username">
-                            <div class="text">Username</div>
-                            <input type="text">
+                            <div class="text" id="box-username">Username</div>
+                            <input type="text" id="box-username">
                         </div>
                         <div class="nickname">
                             <div class="text">Nickname</div>
-                            <input type="text">
+                            <input type="text" id="box-nickname">
                         </div>
                         <div class="firstname">
                             <div class="text">Firstname</div>
-                            <input type="text">
+                            <input type="text" id="box-firstname"> 
                         </div>
                         <div class="lastname">
                             <div class="text">Lastname</div>
-                            <input type="text">
+                            <input type="text" id="box-lastname">
                         </div>
                         <div class="email">
                             <div class="text">Email</div>
-                            <input type="email">
+                            <input type="email" id="box-email">
                         </div>
                     </div>
                 </div>
@@ -54,13 +54,13 @@
             <!-- Menu -->
             <div class="menu">
                 <div class="content-menu">
-                    <div class="stats">
+                    <div class="stats" id="stats">
                         <a href="stats.html"><img src="../images/Stat.png" alt="stats"></a>
                     </div>
-                    <div class="chat">
+                    <div class="chat" id="chat">
                         <a href="index.html"><img src="../images/Chat.png" alt="chat"></a>
                     </div>
-                    <div class="profile">
+                    <div class="profile" id="profile">
                         <a href="profile.html"><img src="../images/User.png" alt="user"></a>
                     </div>
                 </div>
@@ -70,5 +70,6 @@
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../javascripts/talkbot.js"></script>
+    <script src="../javascripts/profile.js"></script>
 </body>
 </html>
